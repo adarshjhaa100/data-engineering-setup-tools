@@ -1,0 +1,15 @@
+Create Table:
+create table product (
+	id serial primary key,
+	name text,
+	price double precision	,
+	inventory integer
+);
+
+create table product (
+	id serial primary key,
+	name text,
+	price double precision	,
+	inventory integer
+);
+

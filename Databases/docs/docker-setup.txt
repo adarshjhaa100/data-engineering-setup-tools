@@ -1,0 +1,19 @@
+postgres with adminer(pgadmin)
+
+docker run --name 
+cloudbeaver-ee --rm -ti 
+-p 8080:8978 
+-v /var/cloudbeaver/workspace:/opt/cloudbeaver/workspace 
+dbeaver/cloudbeaver-ee:latest
+
+SELECT BALANCE FROM BANK_ACCOUNT WHERE id = 1;
+
+SAVEPOINT step1;
+
+CHECK BALANCE > 100;
+
+UPDATE BANK_ACCOUNT SET BALANCE=BALANCE-100 WHERE id=1;
+
+UPDATE BANK_ACCOUNT SET BALANCE=BALANCE+100 WHERE id=2;
+
+COMMIT;

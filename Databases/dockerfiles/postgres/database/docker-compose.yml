@@ -1,0 +1,33 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - pg-volume:/var/lib/postgresql
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: pass@1234
+      POSTGRES_USER: tcsc
+
+  adminer:
+    image: adminer # formerly pgAdmin
+    restart: always
+    ports:
+      - 8080:8080
+  
+  dbeaver:
+    image: dbeaver/cloudbeaver:latest
+    restart: always
+    ports:
+      - 8081:8978
+    volumes:
+      - dbeaver-volume:/opt/cloudbeaver/workspace 
+
+volumes:
+  pg-volume: # need to define the volume here which would be used above
+  dbeaver-volume:

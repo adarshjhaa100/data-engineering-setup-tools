@@ -1,0 +1,37 @@
+version: "3.8"
+services:
+  db: # exposes to db:5432
+    image: postgres
+    container_name: local_pgdb
+    restart: always
+    # ports:
+    #   - "5433:5432" # access using gateway address
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: pass@1234
+      POSTGRES_DB: myapp
+      POSTGRES_HOST: localhost
+    volumes:
+      - local_pgdata2:/var/lib/postgresql/data
+    networks:
+      - pgadmin_default
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user-name@domain-name.com
+      PGADMIN_DEFAULT_PASSWORD: strong-password
+    volumes:
+      - pgadmin-data2:/var/lib/pgadmin
+    networks:
+      - pgadmin_default
+
+volumes:
+  local_pgdata2:
+  pgadmin-data2:
+networks:
+  pgadmin_default:
